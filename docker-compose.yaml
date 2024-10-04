@@ -1,0 +1,17 @@
+services:
+  imagor:
+    image: shumc/imagor:latest
+    ports:
+      - "8021:8000"
+    volumes:
+      - ./sample/chutter_snap.jpg:/tmp/chutter_snap.jpg
+    environment:
+      IMAGOR_UNSAFE: 1
+      FILE_LOADER_BASE_DIR: /tmp
+
+  imagor_toy:
+    ports:
+      - "8022:80"
+    build:
+      context: .
+      dockerfile: Dockerfile.toy

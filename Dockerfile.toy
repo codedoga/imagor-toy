@@ -1,0 +1,32 @@
+# Use an official Node.js runtime as a parent image
+FROM node:21 AS build
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages
+RUN npm install
+
+# Copy the config file
+COPY /sample/config.js /app/config.js
+
+# Build the project using gulp
+RUN npx gulp
+
+# Use an official nginx runtime as a parent image
+FROM nginx:alpine
+
+# Copy the built files from the build stage to the nginx html directory
+COPY --from=build /app/index.html /usr/share/nginx/html/
+COPY --from=build /app/thumbor-toy.css /usr/share/nginx/html/
+COPY --from=build /app/thumbor-toy.js /usr/share/nginx/html/
+COPY --from=build /app/fonts /usr/share/nginx/html/fonts
+
+# Expose port 80
+EXPOSE 80
+
+# Start nginx when the container launches
+CMD ["nginx", "-g", "daemon off;"]

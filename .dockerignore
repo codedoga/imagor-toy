@@ -1,0 +1,10 @@
+doc
+fonts
+node_modules
+docker-compose.yml
+Dockerfile.toy
+package-lock.json
+README.md
+thumbor-toy.js
+thumbor-toy.css
+config.js

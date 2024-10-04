@@ -6,50 +6,67 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-var watermarkImages = [
-];
+var watermarkImages = [];
 
 export default {
-    common: {
-        modes: [],
-        source: {
-            servers: [
-                {
-                    label:  'thumbor demo site',
-                    value:  'http://thumbor.thumborize.me/',
-                    images: [
-                        { label: 'sample image', value: 'thumborize.me/static/img/beach.jpg' }
-                    ]
-                }
-            ]
-        },
-        filters: [
-            'blur',
-            'brightness',
-            'colorize',
-            'contrast',
-            'convolution',
-            'equalize',
-            'extract_focal',
-            'fill',
-            'format',
-            'grayscale',
-            'max_bytes',
-            'noise',
-            'no_upscale',
-            'quality',
-            'rgb',
-            'rotate',
-            'round_corner',
-            'saturation',
-            'sharpen',
-            'strip_icc',
+  common: {
+    presetsResize: [
+      {
+        label: "4/3",
+        width: 432,
+        height: 326,
+      },
+      {
+        label: "16/9",
+        width: 462,
+        height: 260,
+      },
+      {
+        label: "16/7",
+        width: 474,
+        height: 209,
+      },
+    ],
+    source: {
+      servers: [
+        {
+          label: "Imagor demo site",
+          value: "http://localhost:8021/",
+          images: [
             {
-                type: 'watermark',
-                settingsConfig: [
-                    { choices: watermarkImages }
-                ]
-            }
-        ]
+              label: "sample image",
+              value: "chutter_snap.jpg",
+            },
+          ],
+        },
+      ],
     },
+    filters: [
+      "background_color",
+      "blur",
+      "brightness",
+      "contrast",
+      "fill",
+      "focal",
+      "format",
+      "grayscale",
+      "hue",
+      "label",
+      "max_bytes",
+      "orient",
+      "proportion",
+      "quality",
+      "rgb",
+      "rotate",
+      "round_corner",
+      "saturation",
+      "sharpen",
+      "strip_metadata",
+      "upscale",
+      {
+        type: "watermark",
+        settingsConfig: [{ choices: watermarkImages }],
+      },
+    ],
+  },
 };
