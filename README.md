@@ -6,9 +6,9 @@ Sample image from: [CHUTTERSNAP on Unsplash](https://unsplash.com/photos/white-c
 
 # Usage
 
-'''
+```ssh
 docker compose up
-'''
+```
 
 Imagor toy will be available on [http://localhost:8022](http://localhost:8022)
 Imagor will be available on [http://localhost:8021](http://localhost:8021)
