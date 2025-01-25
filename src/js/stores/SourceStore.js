@@ -1,50 +1,50 @@
 /*
- * This file is part of thumbor-toy project.
+ * This file is adapted for imagor-toy from original thumbor-toy project
  *
- * (c) Raphaël Benitte <thumbor-toy@rbenitte.com>
+ * (c) Dominik Gašparić <codedoga>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import Reflux        from 'reflux';
-import SourceActions from './../actions/SourceActions';
+import Reflux from "reflux";
+import SourceActions from "./../actions/SourceActions";
 
-var currentServer = '';
-var currentImage  = '';
+var currentServer = "";
+var currentImage = "";
 
 const SourceStore = Reflux.createStore({
-    listenables: SourceActions,
+  listenables: SourceActions,
 
-    set(server, image) {
-        currentServer = server;
-        currentImage  = image;
+  set(server, image) {
+    currentServer = server;
+    currentImage = image;
 
-        this.trigger(currentServer, currentImage);
-    },
+    this.trigger(currentServer, currentImage);
+  },
 
-    setServer(server) {
-        currentServer = server;
+  setServer(server) {
+    currentServer = server;
 
-        this.trigger(currentServer, currentImage);
-    },
+    this.trigger(currentServer, currentImage);
+  },
 
-    setImage(image) {
-        currentImage = image;
+  setImage(image) {
+    currentImage = image;
 
-        this.trigger(currentServer, currentImage);
-    },
+    this.trigger(currentServer, currentImage);
+  },
 
-    isValid() {
-        return currentServer !== '' && currentImage !== '';
-    },
+  isValid() {
+    return currentServer !== "" && currentImage !== "";
+  },
 
-    server() {
-        return currentServer;
-    },
+  server() {
+    return currentServer;
+  },
 
-    image() {
-        return currentImage;
-    }
+  image() {
+    return currentImage;
+  },
 });
 
 export default SourceStore;

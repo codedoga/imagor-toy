@@ -1,3 +1,8 @@
+Copyright (c) Dominik Gašparić \<codedoga\>, 2024
+Adaption license unchanged from original.
+
+---
+
 Copyright (c) Raphaël Benitte
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
