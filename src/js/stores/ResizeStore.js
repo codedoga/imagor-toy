@@ -1,45 +1,45 @@
 /*
- * This file is part of thumbor-toy project.
+ * This file is adapted for imagor-toy from original thumbor-toy project
  *
- * (c) Raphaël Benitte <thumbor-toy@rbenitte.com>
+ * (c) Dominik Gašparić <codedoga>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import Reflux        from 'reflux';
-import ResizeActions from './../actions/ResizeActions';
-import _             from 'lodash';
+import Reflux from "reflux";
+import ResizeActions from "./../actions/ResizeActions";
+import _ from "lodash";
 
 const defaultResize = {
-    active: false,
-    width:  500,
-    height: 300,
-    mode:   'default'
+  active: false,
+  width: 500,
+  height: 300,
+  mode: "default",
 };
 
 var currentResizeConfig = _.clone(defaultResize);
 
 const ResizeStore = Reflux.createStore({
-    init() {
-        this.listenTo(ResizeActions.update, this.updateResize);
-        this.listenTo(ResizeActions.clear,  this.clearResize);
-    },
+  init() {
+    this.listenTo(ResizeActions.update, this.updateResize);
+    this.listenTo(ResizeActions.clear, this.clearResize);
+  },
 
-    clearResize() {
-        currentResizeConfig = _.clone(defaultResize);
+  clearResize() {
+    currentResizeConfig = _.clone(defaultResize);
 
-        this.trigger(currentResizeConfig);
-    },
+    this.trigger(currentResizeConfig);
+  },
 
-    updateResize(config) {
-        currentResizeConfig = _.merge(currentResizeConfig, config);
+  updateResize(config) {
+    currentResizeConfig = _.merge(currentResizeConfig, config);
 
-        this.trigger(currentResizeConfig);
-    },
+    this.trigger(currentResizeConfig);
+  },
 
-    config() {
-        return currentResizeConfig;
-    }
+  config() {
+    return currentResizeConfig;
+  },
 });
 
 export default ResizeStore;

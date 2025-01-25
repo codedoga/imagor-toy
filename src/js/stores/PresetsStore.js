@@ -1,48 +1,47 @@
 /*
- * This file is part of thumbor-toy project.
+ * This file is adapted for imagor-toy from original thumbor-toy project
  *
- * (c) Raphaël Benitte <thumbor-toy@rbenitte.com>
+ * (c) Dominik Gašparić <codedoga>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 /* @flow */
-import Reflux         from 'reflux';
-import PresetsActions from './../actions/PresetsActions';
-import SourceActions  from './../actions/SourceActions';
-import ResizeActions  from './../actions/ResizeActions';
-import FilterActions  from './../actions/FilterActions';
-import ConfigStore    from './ConfigStore';
-
+import Reflux from "reflux";
+import PresetsActions from "./../actions/PresetsActions";
+import SourceActions from "./../actions/SourceActions";
+import ResizeActions from "./../actions/ResizeActions";
+import FilterActions from "./../actions/FilterActions";
+import ConfigStore from "./ConfigStore";
 
 const PresetsStore = Reflux.createStore({
-    listenables: PresetsActions,
+  listenables: PresetsActions,
 
-    init() {
-        this.listenTo(ConfigStore, this.onConfigUpdate);
-    },
+  init() {
+    this.listenTo(ConfigStore, this.onConfigUpdate);
+  },
 
-    onConfigUpdate(config) {
-        let presets = config.presetImages || [];
+  onConfigUpdate(config) {
+    let presets = config.presetImages || [];
 
-        this.trigger(presets);
-    },
+    this.trigger(presets);
+  },
 
-    load(preset) {
-        let { data } = preset;
-        if (null === data.image || null === data.server) {
-            return;
-        }
-
-        SourceActions.setServer(data.server);
-        SourceActions.setImage(data.image);
-        ResizeActions.clear();
-        ResizeActions.update(data.resize);
-        FilterActions.clear();
-        data.filters.forEach(filter => {
-            FilterActions.add(filter.type);
-        });
+  load(preset) {
+    let { data } = preset;
+    if (null === data.image || null === data.server) {
+      return;
     }
+
+    SourceActions.setServer(data.server);
+    SourceActions.setImage(data.image);
+    ResizeActions.clear();
+    ResizeActions.update(data.resize);
+    FilterActions.clear();
+    data.filters.forEach((filter) => {
+      FilterActions.add(filter.type);
+    });
+  },
 });
 
 export default PresetsStore;

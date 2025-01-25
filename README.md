@@ -1,6 +1,6 @@
 # Imagor toy
 
-This is adaptation an of original [Thumbor toy](https://github.com/plouc/thumbor-toy) project for use with [Imagor](https:/github.com/cshum/imagor)
+This is adaptation of original [Thumbor toy](https://github.com/plouc/thumbor-toy) project for use with [Imagor](https:/github.com/cshum/imagor)
 
 Sample image from: [CHUTTERSNAP on Unsplash](https://unsplash.com/photos/white-ceramic-dinnerware-set-aEnH4hJ_Mrs)
 
